@@ -15,7 +15,8 @@
                         url: '../../api/Patient/' + this.Id(),
                         type: 'GET'
                     }).done(function (data) {
-                       
+
+                        Bind('PatientName', data.Name);
 
 
 
@@ -42,40 +43,43 @@
         });
     };
 
-      function addAndBindControl() {
-
-        Office.context.document.bindings.addFromNamedItemAsync("MyContentControlTitle", "text", { id: 'myBinding' }, function (result) {
-
+    function Bind(placeholderName, content) {
+        Office.context.document.bindings.addFromNamedItemAsync(placeholderName, "text", { id: placeholderName + '_id' }, function (result) {
             if (result.status == "failed") {
 
-                if (result.error.message == "The named item does not exist.")
-                    var myOOXMLRequest = new XMLHttpRequest();
-                    var myXML;
-                    myOOXMLRequest.open('GET', '../../Snippets_BindAndPopulate/ContentControl.xml', false);
-                    myOOXMLRequest.send();
+                //if (result.error.message == "The named item does not exist.")
+                //    var myOOXMLRequest = new XMLHttpRequest();
+                //    var myXML;
+                //    myOOXMLRequest.open('GET', '../../Snippets_BindAndPopulate/ContentControl.xml', false);
+                //    myOOXMLRequest.send();
 
-                    if (myOOXMLRequest.status === 200) {
-                        myXML = myOOXMLRequest.responseText;
-                    }
-                    Office.context.document.setSelectedDataAsync(myXML, { coercionType: 'ooxml' }, function (result) {
-                        Office.context.document.bindings.addFromNamedItemAsync("MyContentControlTitle", "text", { id: 'myBinding' });
-                    });
+                //    if (myOOXMLRequest.status === 200) {
+                //        myXML = myOOXMLRequest.responseText;
+                //    }
+                //    Office.context.document.setSelectedDataAsync(myXML, { coercionType: 'ooxml' }, function (result) {
+                //        Office.context.document.bindings.addFromNamedItemAsync("MyContentControlTitle", "text", { id: 'myBinding' });
+                //    });
             }
-            });
-        }
-    
+            else
+            {
+                Office.select("bindings#" + placeholderName + '_id').setDataAsync(content);
+
+            }
+        });
+    }
+
     //add content at bound location
     function populateBinding(filename) {
 
         var myOOXMLRequest = new XMLHttpRequest();
         var myXML;
         myOOXMLRequest.open('GET', filename, false);
-            myOOXMLRequest.send();
-            if (myOOXMLRequest.status === 200) {
-                myXML = myOOXMLRequest.responseText;
-            }
-            Office.select("bindings#myBinding").setDataAsync(myXML, { coercionType: 'ooxml' });
-        };
+        myOOXMLRequest.send();
+        if (myOOXMLRequest.status === 200) {
+            myXML = myOOXMLRequest.responseText;
+        }
+        Office.select("bindings#myBinding").setDataAsync(myXML, { coercionType: 'ooxml' });
+    };
 
 
 

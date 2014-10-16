@@ -1,2 +1,2 @@
 bin\Debug\app.publish\OfficeAppManifests\WordAppManifest.xml
-C:\Source\Repos\Healthcare ISV\Source\Code\Clients\Office\WordApp\bin\Debug\app.publish\WordApp.app
+C:\Code\VIPP-Office-App\WordApp\bin\Debug\app.publish\WordApp.app

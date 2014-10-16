@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <App xmlns="http://schemas.microsoft.com/sharepoint/2012/app/manifest"
      Name="WordApp"
-     ProductID="{4cffe3ae-7bef-4df9-bbf8-d3435f6cac79}"
+     ProductID="{1ae0ae7f-aec8-4eff-b6af-2fb5120328fe}"
      Version="1.0.0.0"
      SharePointMinVersion="15.0.0.0"
 >

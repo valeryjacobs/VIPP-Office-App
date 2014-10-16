@@ -1,1 +1,2 @@
 C:\Source\Repos\Healthcare ISV\Source\Code\Clients\Office\WordApp\bin\Debug\WordApp.dll.config
+C:\Code\VIPP-Office-App\WordApp\bin\Debug\WordApp.dll.config

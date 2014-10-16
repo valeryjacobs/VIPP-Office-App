@@ -20,7 +20,7 @@
     <CspkgPartId>{0f1e4434-35df-4f7d-876b-d7a83504891f}</CspkgPartId>
     <SqlPackagePartId>{0967f1e4-2acf-4877-bc6a-817a42dff58b}</SqlPackagePartId>
     <ProjectMode>OfficeApp</ProjectMode>
-    <ActivePublishProfile>hackfabrikamofficeapp - Web Deploy</ActivePublishProfile>
+    <ActivePublishProfile>hackfabrikamofficeapp - FTP</ActivePublishProfile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -43,6 +43,7 @@
   </PropertyGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="PatientDischargeTemplate.docx" />
     <None Include="WordAppManifest\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{729746a9-38ce-48e6-8bfc-d7588faa3a53}</SharePointProjectItemId>
     </None>

@@ -8,5 +8,7 @@
     <GeneratedProductId>{9b2c9a1f-527d-474a-be60-44184690a17e}</GeneratedProductId>
     <GeneratedAppVersion>1.0.0.0</GeneratedAppVersion>
     <GeneratedClientSecret>6POaSRPNerEqKpA8mlEBdslfL/rmWrmv0VE9lMSd0OM=</GeneratedClientSecret>
+    <ProjectView>ShowAllFiles</ProjectView>
+    <OfficeAppStartDocument>PatientDischargeTemplate.docx</OfficeAppStartDocument>
   </PropertyGroup>
 </Project>

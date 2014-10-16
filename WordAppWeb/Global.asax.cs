@@ -6,18 +6,21 @@ using System.Web.Routing;
 using System.Web.Security;
 using System.Web.SessionState;
 using System.Web.Http;
+using WordAppWeb.Models;
 
 namespace WordAppWeb
 {
     public class Global : System.Web.HttpApplication
     {
-
+        public static DEMO_EMREntities DBContext { get; set; }
         protected void Application_Start(object sender, EventArgs e)
         {
             RouteTable.Routes.MapHttpRoute(
                 name: "DefaultAPI",
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id= RouteParameter.Optional});
+
+            DBContext = new DEMO_EMREntities();
         }
 
         protected void Session_Start(object sender, EventArgs e)

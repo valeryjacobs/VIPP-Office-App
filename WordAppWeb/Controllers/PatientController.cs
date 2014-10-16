@@ -4,32 +4,56 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using WordAppWeb.Models;
+using WordAppWeb.ViewModel;
+using WordAppWeb;
 
 namespace WordAppWeb.Controllers
 {
     public class PatientController : ApiController
     {
-        // GET api/<controller>
-        public IEnumerable<Patient> Get()
+        public IEnumerable<PatientViewModel> Get()
         {
-            return new List<Patient>  { new Patient{Name="Patient1", Id = 1}, new Patient{Name = "Patient2", Id=2}};
+            var patients = new List<PatientViewModel>();
+
+            foreach (Patient pat in Global.DBContext.Patients)
+            {
+                patients.Add(new PatientViewModel
+                {
+                    Id = pat.PatientID,
+                    Name = pat.FirstName + " " + pat.LastName,
+                });
+            }
+
+            return patients;
         }
 
         // GET api/<controller>/5
-        public Patient Get(int id)
+        public PatientViewModel Get(int id)
         {
-            return new Patient { Name = "FoundPAtient" , Id = 3, Medicine = "Morfine"};
+            using (var ctx = new DEMO_EMREntities())
+            {
+                var pat = ctx.Patients.Where(x => x.PatientID == id).Single();
+
+                var vitals = pat.PatientVitals.First();
+
+                return new PatientViewModel
+                {
+                    Id = pat.PatientID,
+                    Name = pat.FirstName + " " + pat.LastName,
+                    BloodPressure = vitals.BP_Systolic + "/" + vitals.BP_Diastolic,
+                    BloodType = vitals.BloodType,
+                    Cholesterol = int.Parse(vitals.Cholesterol),
+                    DateOfBirth = pat.DOB,
+                    Gender = pat.Gender,
+                    HeartRate = (int)vitals.Pulse,
+                    Height = int.Parse(vitals.Height),
+                    Weight = int.Parse(vitals.Weight),
+                    BloodGlucose = int.Parse(vitals.BloodGlucose)
+                };
+            }
         }
 
-      
-    }
 
-    public class Patient
-    {
-        public string Name { get; set; }
-
-        public int Id { get; set; }
-
-        public string Medicine { get; set; }
     }
 }
