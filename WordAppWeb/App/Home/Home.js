@@ -9,7 +9,7 @@
             app.initialize();
 
             var viewModel = {
-                status: ko.observable('Contacting backend...'),
+                statusText: ko.observable(),
                 patients: ko.observable(),
                 getPatientData: function () {
                     $.ajax({
@@ -23,13 +23,15 @@
                         Bind('BloodType', data.BloodType);
                         Bind('Cholesterol', String(data.Cholesterol));
                         Bind('HeartRate', String(data.HeartRate));
-                        Bind('DateOfBirth',moment( data.DateOfBirth).format('M-D-YYYY'));
+                        Bind('DateOfBirth', moment(data.DateOfBirth).format('M-D-YYYY'));
                         Bind('BloodPressure', String(data.BloodPressure));
                         Bind('BloodGlucose', String(data.BloodGlucose));
                     });
                 }
             };
 
+            viewModel.statusText('Contacting backend...');
+            
             //Get patient list data.
             $.ajax({
                 url: '../../api/Patient',
@@ -37,12 +39,20 @@
             }
                 ).done(function (data) {
                     viewModel.patients = ko.mapping.fromJS(data);
-                    viewModel.status(''); 
-                    ko.applyBindings(viewModel, document.getElementById("content-main"));
-                }).fail(function (status) {
-                    viewModel.status(status);
-                });
+                    viewModel.statusText('');
 
+                    ko.applyBindings(viewModel, document.getElementById("bodyElement"));
+                }).fail(function (status)
+                {
+                    if (status.status == 500) {
+                         viewModel.statusText('Check your connectivity settings! (For those who demo this locally: Check the SQL Database firewall settings.)');
+                    }
+                    else {
+                         viewModel.statusText(status.message);
+                    }
+
+                    ko.applyBindings(viewModel, document.getElementById("bodyElement"));
+                });
         });
     };
 
@@ -52,10 +62,8 @@
             if (result.status == "failed") {
                 //if (result.error.message == "The named item does not exist.")
             }
-            else
-            {
+            else {
                 Office.select("bindings#" + placeholderName + '_id').setDataAsync(content);
-
             }
         });
     }
