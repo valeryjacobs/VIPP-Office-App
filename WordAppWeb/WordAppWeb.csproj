@@ -134,6 +134,7 @@
     <None Include="Scripts\Office\1.1\office-vsdoc.js" />
     <Content Include="Scripts\knockout-3.0.0.js" />
     <Content Include="Scripts\knockout.mapping-latest.debug.js" />
+    <Content Include="Scripts\moment.min.js" />
     <Content Include="Scripts\Office\1.1\access-web-16.00.debug.js" />
     <Content Include="Scripts\Office\1.1\access-web-16.00.js" />
     <Content Include="Scripts\Office\1.1\ar-sa\office_strings.debug.js" />

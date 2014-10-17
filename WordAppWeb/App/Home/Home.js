@@ -9,6 +9,7 @@
             app.initialize();
 
             var viewModel = {
+                status: ko.observable(),
                 patients: ko.observable(),
                 getPatientData: function () {
                     $.ajax({
@@ -16,55 +17,40 @@
                         type: 'GET'
                     }).done(function (data) {
                         Bind('PatientName', data.Name);
-                        
                         Bind('Gender', data.Gender);
-                        Bind('Height', data.Height);
-                        Bind('Weight', data.Weight);
+                        Bind('Height', String(data.Height));
+                        Bind('Weight', String(data.Weight));
                         Bind('BloodType', data.BloodType);
-                        Bind('Cholesterol', data.Cholesterol);
-                        Bind('HeartRate', data.HeartRate);
-                        Bind('DateOfBirth', data.DateOfBirth);
-                        Bind('BloodPressure', data.BloodPressure);
-                        Bind('BloodGlucose', data.BloodGlucose);
+                        Bind('Cholesterol', String(data.Cholesterol));
+                        Bind('HeartRate', String(data.HeartRate));
+                        Bind('DateOfBirth',moment( data.DateOfBirth).format('M-D-YYYY'));
+                        Bind('BloodPressure', String(data.BloodPressure));
+                        Bind('BloodGlucose', String(data.BloodGlucose));
                     });
                 }
             };
 
-
-            //Get json data
+            //Get patient list data.
             $.ajax({
                 url: '../../api/Patient',
                 type: 'GET'
             }
                 ).done(function (data) {
-
                     viewModel.patients = ko.mapping.fromJS(data);
-
+                    viewModel.status(''); 
                     ko.applyBindings(viewModel, document.getElementById("content-main"));
-
                 }).fail(function (status) {
-                    console.log(status);
+                    viewModel.status(status);
                 });
 
         });
     };
 
+    //Bind patient data to document template.
     function Bind(placeholderName, content) {
         Office.context.document.bindings.addFromNamedItemAsync(placeholderName, "text", { id: placeholderName + '_id' }, function (result) {
             if (result.status == "failed") {
-
                 //if (result.error.message == "The named item does not exist.")
-                //    var myOOXMLRequest = new XMLHttpRequest();
-                //    var myXML;
-                //    myOOXMLRequest.open('GET', '../../Snippets_BindAndPopulate/ContentControl.xml', false);
-                //    myOOXMLRequest.send();
-
-                //    if (myOOXMLRequest.status === 200) {
-                //        myXML = myOOXMLRequest.responseText;
-                //    }
-                //    Office.context.document.setSelectedDataAsync(myXML, { coercionType: 'ooxml' }, function (result) {
-                //        Office.context.document.bindings.addFromNamedItemAsync("MyContentControlTitle", "text", { id: 'myBinding' });
-                //    });
             }
             else
             {
@@ -72,33 +58,5 @@
 
             }
         });
-    }
-
-    //add content at bound location
-    function populateBinding(filename) {
-
-        var myOOXMLRequest = new XMLHttpRequest();
-        var myXML;
-        myOOXMLRequest.open('GET', filename, false);
-        myOOXMLRequest.send();
-        if (myOOXMLRequest.status === 200) {
-            myXML = myOOXMLRequest.responseText;
-        }
-        Office.select("bindings#myBinding").setDataAsync(myXML, { coercionType: 'ooxml' });
-    };
-
-
-
-    // Reads data from current document selection and displays a notification
-    function getDataFromSelection() {
-        Office.context.document.getSelectedDataAsync(Office.CoercionType.Text,
-            function (result) {
-                if (result.status === Office.AsyncResultStatus.Succeeded) {
-                    app.showNotification('The selected text is:', '"' + result.value + '"');
-                } else {
-                    app.showNotification('Error:', result.error.message);
-                }
-            }
-        );
     }
 })();

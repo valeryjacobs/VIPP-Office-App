@@ -1,12 +1,9 @@
 ﻿/* Page-specific styling */
-#buttons li {
+li {
     float: left;
     list-style: none;
-    text-align: center;
-    background-color: #2a8dd4;
-    margin-top: 3px;
+    text-align:left;
     width: 150px;
-    line-height: 24px;
     color: #FFFFFF;
 }
 
@@ -15,9 +12,16 @@
     color: #FFFFFF;
     display: block;
 }
+
+li a{
+    background-color: #2a8dd4;
+    height:22px;
+    margin:2px;
+    padding:2px;   
+}
  
-#buttons li a:hover {
+li  a:hover {
     text-decoration: none;
-    background-color: black;
+    background-color: #91c6f5;
 }
 
