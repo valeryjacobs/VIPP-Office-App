@@ -9,7 +9,7 @@
             app.initialize();
 
             var viewModel = {
-                status: ko.observable(),
+                status: ko.observable('Contacting backend...'),
                 patients: ko.observable(),
                 getPatientData: function () {
                     $.ajax({
