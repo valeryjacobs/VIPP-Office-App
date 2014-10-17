@@ -15,11 +15,17 @@
                         url: '../../api/Patient/' + this.Id(),
                         type: 'GET'
                     }).done(function (data) {
-
                         Bind('PatientName', data.Name);
-
-
-
+                        
+                        Bind('Gender', data.Gender);
+                        Bind('Height', data.Height);
+                        Bind('Weight', data.Weight);
+                        Bind('BloodType', data.BloodType);
+                        Bind('Cholesterol', data.Cholesterol);
+                        Bind('HeartRate', data.HeartRate);
+                        Bind('DateOfBirth', data.DateOfBirth);
+                        Bind('BloodPressure', data.BloodPressure);
+                        Bind('BloodGlucose', data.BloodGlucose);
                     });
                 }
             };

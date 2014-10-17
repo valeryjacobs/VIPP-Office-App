@@ -22,6 +22,7 @@ namespace WordAppWeb.Controllers
                 {
                     Id = pat.PatientID,
                     Name = pat.FirstName + " " + pat.LastName,
+                    DateOfBirth = pat.DOB
                 });
             }
 
