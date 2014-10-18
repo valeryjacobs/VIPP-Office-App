@@ -83,13 +83,10 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\PatientTransferTemplate.docx" />
     <EntityDeploy Include="Models\FabrikamGeneralModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>FabrikamGeneralModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Assets\SmallLogo.scale-100.png" />
-    <Content Include="Assets\StoreLogo.scale-100.png" />
     <Content Include="Images\SmallLogo.scale-100.png" />
     <Content Include="Images\StoreLogo.scale-100.png" />
     <Content Include="Models\FabrikamGeneralModel.Context.tt">
@@ -105,9 +102,7 @@
       <DependentUpon>FabrikamGeneralModel.edmx</DependentUpon>
       <LastGenOutput>FabrikamGeneralModel.cs</LastGenOutput>
     </Content>
-    <None Include="Properties\PublishProfiles\hackfabrikamofficeapp - FTP %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\hackfabrikamofficeapp - FTP.pubxml" />
-    <None Include="Properties\PublishProfiles\hackfabrikamofficeapp - Web Deploy %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\hackfabrikamofficeapp - Web Deploy.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

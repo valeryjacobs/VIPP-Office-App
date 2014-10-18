@@ -23,7 +23,7 @@
                         Bind('BloodType', data.BloodType);
                         Bind('Cholesterol', String(data.Cholesterol));
                         Bind('HeartRate', String(data.HeartRate));
-                        Bind('DateOfBirth', moment(data.DateOfBirth).format('M-D-YYYY'));
+                        Bind('DateOfBirth', moment(data.DateOfBirth).format('DD-MM-YYYY'));
                         Bind('BloodPressure', String(data.BloodPressure));
                         Bind('BloodGlucose', String(data.BloodGlucose));
                     });
